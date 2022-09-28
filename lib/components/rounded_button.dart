@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class RoundedButton extends StatelessWidget {
   RoundedButton({
     required this.buttonText,
@@ -21,13 +20,16 @@ class RoundedButton extends StatelessWidget {
         color: buttonColor,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
-          onPressed: (){
+          onPressed: () {
             Navigator.pushNamed(context, routeName);
           },
           minWidth: 200.0,
           height: 42.0,
           child: Text(
             buttonText.toString(),
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
       ),
