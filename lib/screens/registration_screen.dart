@@ -25,7 +25,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kAppBackgroundColor,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -68,13 +68,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               SizedBox(
                 height: 24.0,
               ),
-              RoundedButton(
+              RoundedButtonWithFunction(
                 buttonText: 'Register',
                 routeName: LoginScreen.id,
                 buttonColor: Colors.blueAccent,
-              ),
-              TextButton(
-                onPressed: () async {
+                onPressedFunction: () async {
                   setState((){
                     showSpinner = true;
                   });
@@ -92,8 +90,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     print(e);
                   }
                 },
-                child: Text("Press me"),
-              )
+              ),
             ],
           ),
         ),

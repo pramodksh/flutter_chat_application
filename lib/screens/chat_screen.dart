@@ -19,6 +19,8 @@ class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
 
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -42,55 +44,68 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: null,
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.logout_outlined),
-              onPressed: () {
-                messageStream();
-                // _auth.signOut();
-                // Navigator.pop(context);
-              }),
-        ],
-        title: Text('⚡️Chat'),
-        backgroundColor: Colors.lightBlueAccent,
+    return Container(
+      height: double.infinity,
+
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.purple, Colors.orange],
+
+        )
       ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              decoration: kMessageContainerDecoration,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      onChanged: (value) {
-                        messageText = value;
-                      },
-                      decoration: kMessageTextFieldDecoration,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      _firestore.collection('messages').add({
-                        'text' : messageText,
-                        'sender' : loggedInUser?.email
-                      });
-                    },
-                    child: Text(
-                      'Send',
-                      style: kSendButtonTextStyle,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: null,
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.logout_outlined),
+                onPressed: () {
+                  messageStream();
+                  // _auth.signOut();
+                  // Navigator.pop(context);
+                }),
           ],
+          title: Text('⚡️Chat'),
+          backgroundColor: Colors.transparent,
+        ),
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                decoration: kMessageContainerDecoration,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        onChanged: (value) {
+                          messageText = value;
+                        },
+                        decoration: kMessageTextFieldDecoration,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        _firestore.collection('messages').add({
+                          'text' : messageText,
+                          'sender' : loggedInUser?.email
+                        });
+                      },
+                      child: Text(
+                        'Send',
+                        style: kSendButtonTextStyle,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

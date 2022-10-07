@@ -65,13 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 24.0,
               ),
-              RoundedButton(
+              RoundedButtonWithFunction(
                 buttonText: "Login",
                 routeName: HomeScreen.id,
                 buttonColor: Colors.blue,
-              ),
-              TextButton(
-                onPressed: () async {
+                onPressedFunction: () async {
                   setState(() {
                     showSpinner = true;
                   });
@@ -91,10 +89,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   } catch (e) {
                     print("catch Body Executed!");
                     print(e);
+                    setState(() {
+                      showSpinner = false;
+                    });
                     // TODO : Wrong Password Code Here
                   }
                 },
-                child: Text("Login"),
               ),
             ],
           ),
