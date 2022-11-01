@@ -1,4 +1,6 @@
 import 'package:flash_chat_flutter/screens/chat_screen.dart';
+import 'package:flash_chat_flutter/screens/first_screen.dart';
+import 'package:flash_chat_flutter/screens/home_screen.dart';
 import 'package:flash_chat_flutter/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -80,7 +82,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email!, password: password!);
                     if (newUser != null) {
-                      Navigator.pushNamed(context, ChatScreen.id);
+                      // Navigator.pushNamed(context, ChatScreen.id);
+                      Navigator.pushNamed(context, FirstScreen.id);
+
+                    }else{
+                      Navigator.pushNamed(context, HomeScreen.id);
                     }
                     setState((){
                       showSpinner = false;

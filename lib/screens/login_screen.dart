@@ -1,6 +1,7 @@
 import 'package:flash_chat_flutter/components/rounded_button.dart';
 import 'package:flash_chat_flutter/constants.dart';
 import 'package:flash_chat_flutter/screens/chat_screen.dart';
+import 'package:flash_chat_flutter/screens/first_screen.dart';
 import 'package:flash_chat_flutter/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kAppBackgroundColor,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -79,7 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     // print("Value of a is : ");
                     // print(user);
                     if (user != null) {
-                      Navigator.pushNamed(context, ChatScreen.id);
+                      // Navigator.pushNamed(context, ChatScreen.id);
+                      print("Push to first screen");
+                      Navigator.pushNamed(context, FirstScreen.id);
+
                     } else {
                       Navigator.pushNamed(context, HomeScreen.id);
                     }

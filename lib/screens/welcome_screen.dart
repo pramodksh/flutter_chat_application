@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../components/rounded_button.dart';
 import 'login_screen.dart';
 
+
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
 
@@ -64,6 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     child: Container(
                       child: Image.asset('images/logo.png'),
                       height: 60,
+
                     ),
                   ),
                   DefaultTextStyle(
@@ -99,14 +101,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   Navigator.pushNamed(context, RegistrationScreen.id);
                 },
               ),
-              RoundedButtonWithFunction(
-                buttonText: 'Sign-in with Google',
-                routeName: RegistrationScreen.id,
-                buttonColor: Colors.white.withOpacity(.5),
-                onPressedFunction: () {
-                  Navigator.pushNamed(context, RegistrationScreen.id);
-                },
-              ),
+              // RoundedButtonWithFunction(
+              //   buttonText: 'Sign-in with Google',
+              //   routeName: RegistrationScreen.id,
+              //   buttonColor: Colors.white.withOpacity(.5),
+              //   onPressedFunction: () {
+              //     Navigator.pushNamed(context, RegistrationScreen.id);
+              //   },
+              // ),
             ],
           ),
         ),
