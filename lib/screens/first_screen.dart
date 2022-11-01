@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flash_chat_flutter/screens/profileScreen.dart';
+// import 'package:flash_chat_flutter/screens/profileScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat_flutter/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import 'first_screen_pages/home_screen.dart';
+import 'first_screen_pages/profileScreen.dart';
 
 class FirstScreen extends StatefulWidget {
 
@@ -56,19 +59,7 @@ Card myCard = Card(
   ),
 );
 
-List<String> listOfUserName = ['John', 'Joe', 'Adam'];
-List<String> listOfDescription = [
-  'As designers attempting to creating functional work',
-  'Oftentimes we are required to make our designs look as finished as possible.',
-  'Make sure the prototype looks finished by inserting text or photos or what have you.'
-];
 
-List<String> listOfImages = [
-  'images/about01.png',
-  'images/about02.png',
-  'images/about03.png',
-  'images/about04.png'
-];
 
 final List<int> numberofcontainers = [2, 7, 1];
 
@@ -81,95 +72,13 @@ class _FirstScreenState extends State<FirstScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
-    Container(
-      margin: EdgeInsets.all(10),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 240.0,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enlargeCenterPage: true,
-                scrollDirection: Axis.horizontal,
-              ),
-              items: listOfImages.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(color: Colors.transparent),
-                        child: Image(image: AssetImage(i)));
-                  },
-                );
-              }).toList(),
-            ),
-            Text("News"),
-            // ===============================
-            ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: numberofcontainers.length,
-              itemBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  width: 1000,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text(listOfUserName[index]),
-                        // subtitle: Text('subheading'),
-                        trailing: Icon(Icons.favorite_outline),
-                      ),
-                      Container(
-                        height: 200.0,
-                        child: Ink.image(
-                          image: AssetImage(listOfImages[index]),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.centerLeft,
-                        child: Text(listOfDescription[index]),
-                      ),
-                      ButtonBar(
-                        children: [
-                          Icon(Icons.comment),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Icon(Icons.share),
-                          SizedBox(
-                            width: 20,
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-            // ==================================
-            // SizedBox(height: 30,),
-            // myCard,
-            // SizedBox(height: 30,),
-            // myCard,
-            // SizedBox(height: 30,),
-            // myCard,
-          ],
-        ),
-      ),
-    ),
+    HomeScreen(),
     Text(
-      'Index 1: Business',
+      'Index 1: Trade',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2: Forum',
       style: optionStyle,
     ),
     ProfileScreen(),

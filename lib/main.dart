@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flash_chat_flutter/screens/first_screen.dart';
-import 'package:flash_chat_flutter/screens/home_screen.dart';
+import 'package:flash_chat_flutter/screens/first_screen_pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat_flutter/screens/welcome_screen.dart';
 import 'package:flash_chat_flutter/screens/login_screen.dart';
@@ -29,7 +29,7 @@ class FlashChat extends StatelessWidget {
       //   home: Test(),
         //TODO: Uncomment this
 
-      initialRoute: FirstScreen.id,
+      initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

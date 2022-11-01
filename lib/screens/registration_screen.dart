@@ -1,10 +1,11 @@
 import 'package:flash_chat_flutter/screens/chat_screen.dart';
 import 'package:flash_chat_flutter/screens/first_screen.dart';
-import 'package:flash_chat_flutter/screens/home_screen.dart';
+import 'package:flash_chat_flutter/screens/first_screen_pages/home_screen.dart';
 import 'package:flash_chat_flutter/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../components/rounded_button.dart';
 import '../constants.dart';
@@ -55,6 +56,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: "Enter your Email"),
               ),
+              // TextField(
+              //   keyboardType: TextInputType.emailAddress,
+              //   textAlign: TextAlign.center,
+              //   onChanged: (value) {
+              //     email = value;
+              //   },
+              //   decoration:
+              //   kTextFieldDecoration.copyWith(hintText: "Enter your Email"),
+              // ),
               SizedBox(
                 height: 8.0,
               ),
@@ -75,7 +85,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 routeName: LoginScreen.id,
                 buttonColor: Colors.blueAccent,
                 onPressedFunction: () async {
-                  setState((){
+                  setState(() {
                     showSpinner = true;
                   });
                   try {
@@ -84,16 +94,34 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     if (newUser != null) {
                       // Navigator.pushNamed(context, ChatScreen.id);
                       Navigator.pushNamed(context, FirstScreen.id);
-
-                    }else{
+                    } else {
                       Navigator.pushNamed(context, HomeScreen.id);
                     }
-                    setState((){
+                    setState(() {
                       showSpinner = false;
                     });
                   } catch (e) {
                     print("Error Occured : ");
                     print(e);
+                    setState(() {
+                      showSpinner = false;
+                    });
+                    Alert(
+                      context: context,
+                      type: AlertType.error,
+                      title: "Error Occured",
+                      desc: e.toString(),
+                      buttons: [
+                        DialogButton(
+                          child: Text(
+                            "Ok",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                          width: 120,
+                        )
+                      ],
+                    ).show();
                   }
                 },
               ),

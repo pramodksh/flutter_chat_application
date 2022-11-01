@@ -1,7 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat_flutter/constants.dart';
-import 'package:flash_chat_flutter/main.dart';
 import 'package:flash_chat_flutter/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import '../components/rounded_button.dart';
@@ -76,7 +75,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     ),
                     child: AnimatedTextKit(
                       animatedTexts: [
-                        TypewriterAnimatedText('Flash Chat'),
+                        TypewriterAnimatedText('Coin & Stamp',textStyle: TextStyle(
+                          fontSize: 40
+                        )),
                       ],
                     ),
                   ),

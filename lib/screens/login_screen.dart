@@ -2,10 +2,11 @@ import 'package:flash_chat_flutter/components/rounded_button.dart';
 import 'package:flash_chat_flutter/constants.dart';
 import 'package:flash_chat_flutter/screens/chat_screen.dart';
 import 'package:flash_chat_flutter/screens/first_screen.dart';
-import 'package:flash_chat_flutter/screens/home_screen.dart';
+import 'package:flash_chat_flutter/screens/first_screen_pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'login_screen';
@@ -50,7 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (value) {
                   email = value;
                 },
-                decoration: kTextFieldDecoration,
+                  decoration: kTextFieldDecoration.copyWith(
+                      hintText: "Enter your Email"),
+
               ),
               SizedBox(
                 height: 8.0,
@@ -96,6 +99,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     setState(() {
                       showSpinner = false;
                     });
+                    Alert(
+                      context: context,
+                      type: AlertType.error,
+                      title: "Error Occured",
+                      desc: e.toString(),
+                      buttons: [
+                        DialogButton(
+                          child: Text(
+                            "Ok",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                          width: 120,
+                        )
+                      ],
+                    ).show();
                     // TODO : Wrong Password Code Here
                   }
                 },
